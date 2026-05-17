@@ -12733,9 +12733,19 @@ function createProductDataItem(product, tizhi, path, level, existingData, levelC
 
                     
 
-                    // 模拟数据（不调用真实API）
+                    // 调用5118 API获取真实数据
 
-                    const data = generateMockData(keyword);
+                    let data;
+
+                    try {
+
+                        data = await fetch5118KeywordData(keyword);
+
+                    } catch (e) {
+
+                        data = generateMockData(keyword);
+
+                    }
 
                     updatedCount++;
 
