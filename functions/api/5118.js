@@ -9,11 +9,11 @@ export async function onRequestPost(context) {
       });
     }
 
-    const response = await fetch('http://apis.5118.com/keywordparam/v2', {
+    const response = await fetch('http://apis.5118.com/keyword/word/v2', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': '166D077793D74EE8AE4EDA9D23A01E4B'
+        'Authorization': '6F8B73B6828F4F94B7E34703105F20EA'
       },
       body: JSON.stringify({ keyword: keyword })
     });
