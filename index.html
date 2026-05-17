@@ -12859,27 +12859,15 @@ function createProductDataItem(product, tizhi, path, level, existingData, levelC
 
         async function fetch5118KeywordData(keyword) {
 
-            const API_URL = 'http://apis.5118.com/keywordparam/v2';
-
-            const CORS_PROXY = 'https://corsproxy.io/?url=';
-
-            const AUTH_TOKEN = '166D077793D74EE8AE4EDA9D23A01E4B';
-
-            
-
             try {
 
-                const encodedUrl = encodeURIComponent(API_URL);
-
-                const response = await fetch(CORS_PROXY + encodedUrl, {
+                const response = await fetch('/api/5118', {
 
                     method: 'POST',
 
                     headers: {
 
-                        'Content-Type': 'application/json',
-
-                        'Authorization': AUTH_TOKEN
+                        'Content-Type': 'application/json'
 
                     },
 
