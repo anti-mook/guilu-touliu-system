@@ -12881,25 +12881,35 @@ function createProductDataItem(product, tizhi, path, level, existingData, levelC
 
                     const result = await response.json();
 
-                    return {
+                    if (result.errcode === '0' && result.data && result.data.word && result.data.word.length > 0) {
 
-                        _fromApi: true,
+                        const mainWord = result.data.word.find(w => w.keyword === keyword) || result.data.word[0];
 
-                        baiduPcIndex: result.data?.baidu_pc_index || Math.floor(Math.random() * 500) + 100,
+                        return {
 
-                        baiduMobileIndex: result.data?.baidu_mobile_index || Math.floor(Math.random() * 500) + 100,
+                            _fromApi: true,
 
-                        competitorCount: result.data?.competitor_count || Math.floor(Math.random() * 45) + 5,
+                            baiduPcIndex: mainWord.index || 0,
 
-                        pcSearchVolume: result.data?.pc_search_volume || Math.floor(Math.random() * 800) + 200,
+                            baiduMobileIndex: mainWord.mobile_index || 0,
 
-                        mobileSearchVolume: result.data?.mobile_search_volume || Math.floor(Math.random() * 3000) + 500,
+                            competitorCount: mainWord.bidword_company_count || 0,
 
-                        semBid: result.data?.sem_bid || (Math.random() * 3 + 0.5).toFixed(2),
+                            pcSearchVolume: mainWord.bidword_pcpv || 0,
 
-                        longTailCount: result.data?.longtail_count || Math.floor(Math.random() * 1000000) + 10000
+                            mobileSearchVolume: mainWord.bidword_wisepv || 0,
 
-                    };
+                            semBid: mainWord.sem_recommend_price_avg || 0,
+
+                            longTailCount: mainWord.long_keyword_count || 0,
+
+                            douyinIndex: mainWord.douyin_index || 0,
+
+                            longTailWords: result.data.word
+
+                        };
+
+                    }
 
                 }
 
